@@ -9,6 +9,7 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
+Assets/AmplifyShaderEditor/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
@@ -54,6 +55,9 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+#Other
+Assets/AmplifyShaderEditor.meta
 
 # Crashlytics generated file
 crashlytics-build.properties
