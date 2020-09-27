@@ -35,6 +35,7 @@ public class Chancleta : MonoBehaviour {
             Vector3 direction = GameManager.instance.player.shootingPoint.transform.forward;
             Debug.Log("force " + force);
             rb.AddForce(direction * force);
+            rb.AddTorque(direction * 5f);
 
             GameManager.instance.strengthMeter.ClearMeter();
 
