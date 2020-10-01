@@ -9,7 +9,7 @@ public class Chancleta : MonoBehaviour {
     public float maxForce = 600;
     public float force;
     private float maxRotation = -20f;
-    private float maxForceTime = 1.5f;
+    private float maxForceTime = 0.75f;
     private float forceTime = 0;
     private float percentage = 0;
     private bool updatingStrength = false;
@@ -28,16 +28,14 @@ public class Chancleta : MonoBehaviour {
 
         if (Input.GetMouseButtonUp(0) && transform.parent != null) {
             updatingStrength = false;
-            Debug.Log("Throw");
             rb.isKinematic = false;
             transform.position = GameManager.instance.player.shootingPoint.transform.position;
             transform.parent = null;
             Vector3 direction = GameManager.instance.player.shootingPoint.transform.forward;
-            Debug.Log("force " + force);
             rb.AddForce(direction * force);
             rb.AddTorque(direction * 5f);
-
             GameManager.instance.strengthMeter.ClearMeter();
+            GameManager.instance.player.ScheduleInstantiateNewChancleta(0.7f);
 
         }
 
@@ -59,14 +57,12 @@ public class Chancleta : MonoBehaviour {
     }
 
     private void OnCollisionEnter(Collision collision) {
-
         StartCoroutine("DestroyChancleta");
 
     }
 
     private IEnumerator DestroyChancleta() {
         yield return new WaitForSeconds(1f);
-        GameManager.instance.player.InstantiateNewChancleata();
         Destroy(gameObject);
     }
 
