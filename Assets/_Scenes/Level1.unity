@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.40532714, g: 0.22878, b: 0.097420745, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -564,7 +564,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.8666667, g: 0.588481, b: 0.30588233, a: 1}
+  m_Color: {r: 0.9921569, g: 0.9725491, b: 0.7803922, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -621,13 +621,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
-  m_LocalRotation: {x: -0.5251004, y: 0, z: -0, w: -0.85104036}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalRotation: {x: -0.27152112, y: -0.3765769, z: 0.049241602, w: -0.8843311}
+  m_LocalPosition: {x: 0, y: 15.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 63.35, y: 360, z: 0}
+  m_LocalEulerAnglesHint: {x: 31.152002, y: 408.333, z: 7.885}
 --- !u!1 &798046126
 GameObject:
   m_ObjectHideFlags: 0
@@ -785,6 +785,75 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 859063787}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &859201093
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1615433951121068932, guid: 40c7d598efbbdf948bcc33025f117c27,
+        type: 3}
+      propertyPath: m_Name
+      value: Arbolito_En_Maceta
+      objectReference: {fileID: 0}
+    - target: {fileID: 2098954718102227262, guid: 40c7d598efbbdf948bcc33025f117c27,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 2098954718102227262, guid: 40c7d598efbbdf948bcc33025f117c27,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2098954718102227262, guid: 40c7d598efbbdf948bcc33025f117c27,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 8.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2098954718102227262, guid: 40c7d598efbbdf948bcc33025f117c27,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2098954718102227262, guid: 40c7d598efbbdf948bcc33025f117c27,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.38268343
+      objectReference: {fileID: 0}
+    - target: {fileID: 2098954718102227262, guid: 40c7d598efbbdf948bcc33025f117c27,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2098954718102227262, guid: 40c7d598efbbdf948bcc33025f117c27,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.92387956
+      objectReference: {fileID: 0}
+    - target: {fileID: 2098954718102227262, guid: 40c7d598efbbdf948bcc33025f117c27,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2098954718102227262, guid: 40c7d598efbbdf948bcc33025f117c27,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2098954718102227262, guid: 40c7d598efbbdf948bcc33025f117c27,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -45
+      objectReference: {fileID: 0}
+    - target: {fileID: 2098954718102227262, guid: 40c7d598efbbdf948bcc33025f117c27,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 40c7d598efbbdf948bcc33025f117c27, type: 3}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1862,6 +1931,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AntiguaPatio (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8708461078708779553, guid: 64743f14f307cfe4289cf8674a6cda8f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64743f14f307cfe4289cf8674a6cda8f, type: 3}
