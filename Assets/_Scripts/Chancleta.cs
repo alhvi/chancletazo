@@ -8,17 +8,21 @@ public class Chancleta : MonoBehaviour {
     public float minForce = 350;
     public float maxForce = 600;
     public float force;
+    public bool toggleTrail = true;
     private float maxRotation = -20f;
     private float maxForceTime = 0.75f;
     private float forceTime = 0;
     private float percentage = 0;
     private bool updatingStrength = false;
     private bool scheduledForDestruction = false;
+    private TrailRenderer trail;
 
     private void Start() {
         vCamera = GetComponentInParent<CinemachineVirtualCamera>();
         rb = GetComponent<Rigidbody>();
         force = minForce;
+        trail = GetComponent<TrailRenderer>();
+        trail.enabled = false;
     }
 
     private void Update() {
@@ -38,6 +42,9 @@ public class Chancleta : MonoBehaviour {
                 rb.AddTorque(direction * 5f);
                 GameManager.instance.strengthMeter.ClearMeter();
                 GameManager.instance.player.ScheduleInstantiateNewChancleta(0.7f);
+                //Draw trail on release
+                if(toggleTrail)
+                    trail.enabled = true;
 
             }
 
