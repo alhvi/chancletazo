@@ -22,43 +22,45 @@ public class Chancleta : MonoBehaviour {
     }
 
     private void Update() {
-        if (Input.GetMouseButtonDown(0) && transform.parent != null) {
-            updatingStrength = true;
-        }
 
-        if (Input.GetMouseButtonUp(0) && transform.parent != null) {
-            updatingStrength = false;
-            rb.isKinematic = false;
-            transform.position = GameManager.instance.player.shootingPoint.transform.position;
-            transform.parent = null;
-            Vector3 direction = GameManager.instance.player.shootingPoint.transform.forward;
-            rb.AddForce(direction * force);
-            rb.AddTorque(direction * 5f);
-            GameManager.instance.strengthMeter.ClearMeter();
-            GameManager.instance.player.ScheduleInstantiateNewChancleta(0.7f);
+        if (GameManager.instance.playing) {
+            if (Input.GetMouseButtonDown(0) && transform.parent != null) {
+                updatingStrength = true;
+            }
 
-        }
+            if (Input.GetMouseButtonUp(0) && transform.parent != null) {
+                updatingStrength = false;
+                rb.isKinematic = false;
+                transform.position = GameManager.instance.player.shootingPoint.transform.position;
+                transform.parent = null;
+                Vector3 direction = GameManager.instance.player.shootingPoint.transform.forward;
+                rb.AddForce(direction * force);
+                rb.AddTorque(direction * 5f);
+                GameManager.instance.strengthMeter.ClearMeter();
+                GameManager.instance.player.ScheduleInstantiateNewChancleta(0.7f);
 
-        if (updatingStrength) {
-            float angle = Mathf.Lerp(0, -20, forceTime / maxForceTime);
-            Vector3 rotation = new Vector3(angle, 0, 0);
-            transform.localEulerAngles = rotation;
-            forceTime += Time.deltaTime;
+            }
 
-            force = Mathf.Lerp(minForce, maxForce, forceTime / maxForceTime);
-            percentage = Mathf.Lerp(0, 1, forceTime / maxForceTime);
-            GameManager.instance.strengthMeter.UpdateMeter(percentage);
-        }
+            if (updatingStrength) {
+                float angle = Mathf.Lerp(0, -20, forceTime / maxForceTime);
+                Vector3 rotation = new Vector3(angle, 0, 0);
+                transform.localEulerAngles = rotation;
+                forceTime += Time.deltaTime;
 
-        if (transform.position.y < -5 && !scheduledForDestruction) {
-            scheduledForDestruction = true;
-            StartCoroutine("DestroyChancleta");
+                force = Mathf.Lerp(minForce, maxForce, forceTime / maxForceTime);
+                percentage = Mathf.Lerp(0, 1, forceTime / maxForceTime);
+                GameManager.instance.strengthMeter.UpdateMeter(percentage);
+            }
+
+            if (transform.position.y < -5 && !scheduledForDestruction) {
+                scheduledForDestruction = true;
+                StartCoroutine("DestroyChancleta");
+            }
         }
     }
 
     private void OnCollisionEnter(Collision collision) {
         StartCoroutine("DestroyChancleta");
-
     }
 
     private IEnumerator DestroyChancleta() {

@@ -9,7 +9,9 @@ public class BasicTarget : MonoBehaviour {
     }
 
     private void OnCollisionEnter(Collision collision) {
+        Debug.Log("collision");
         if (collision.gameObject.CompareTag("Chancleta")) {
+            Debug.Log("hit");
             GameManager.instance.score += score;
         }
     }

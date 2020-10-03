@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6862383388321316848}
   m_Layer: 0
   m_Name: Scaler
-  m_TagString: Untagged
+  m_TagString: Chancleta
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 8185429399744351633}
   m_Layer: 0
   m_Name: CubeCollider
-  m_TagString: Untagged
+  m_TagString: Chancleta
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 8185429400433100757}
   m_Layer: 0
   m_Name: Chancleta
-  m_TagString: Untagged
+  m_TagString: Chancleta
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -270,6 +270,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FlipFlop_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9f87cb413cdd066439c9232008f334be,
+        type: 3}
+      propertyPath: m_TagString
+      value: Chancleta
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f87cb413cdd066439c9232008f334be, type: 3}

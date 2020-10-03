@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: aff956ec8a202c749944c0c6970cd32c
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Oleo Script
+  fontNames:
+  - Oleo Script
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 0fe804e986d6af24385004dfbec52322, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

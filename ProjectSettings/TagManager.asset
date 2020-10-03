@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Floor
   - Base
+  - Chancleta
+  - Target
   layers:
   - Default
   - TransparentFX
