@@ -8,10 +8,6 @@ public class CameraMovement : MonoBehaviour {
     private float mousex = 0;
     private float mousey = 0;
 
-    private void Awake() {
-
-    }
-
     private void Start() {
         vcam = GetComponent<CinemachineVirtualCamera>();
     }
@@ -20,22 +16,27 @@ public class CameraMovement : MonoBehaviour {
         mousex = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         mousey = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-        vcam.transform.parent.transform.Rotate(Vector3.up * mousex);
-        float anglex = vcam.transform.rotation.eulerAngles.x;
-        anglex = StandarizeAngle(anglex);
-        if (anglex > 20) {
-            ClampRotationX(vcam.gameObject, 20f);
-        } else if (anglex < -20f) {
-            ClampRotationX(vcam.gameObject, -20f);
-        }
+        Debug.Log(mousex + " " + mousey);
 
-        vcam.transform.Rotate(Vector3.left * mousey);
-        float angley = vcam.transform.parent.transform.rotation.eulerAngles.y;
-        angley = StandarizeAngle(angley);
-        if (angley > 40f) {
-            ClampRotationY(vcam.gameObject.transform.parent.gameObject, 40f);
-        } else if (angley < -40f) {
-            ClampRotationY(vcam.gameObject.transform.parent.gameObject, -40f);
+        if (mousex < 20 && mousex > -20 && mousey < 20 && mousey > -20) {
+
+            vcam.transform.parent.transform.Rotate(Vector3.up * mousex);
+            float anglex = vcam.transform.rotation.eulerAngles.x;
+            anglex = StandarizeAngle(anglex);
+            if (anglex > 20) {
+                ClampRotationX(vcam.gameObject, 20f);
+            } else if (anglex < -20f) {
+                ClampRotationX(vcam.gameObject, -20f);
+            }
+
+            vcam.transform.Rotate(Vector3.left * mousey);
+            float angley = vcam.transform.parent.transform.rotation.eulerAngles.y;
+            angley = StandarizeAngle(angley);
+            if (angley > 40f) {
+                ClampRotationY(vcam.gameObject.transform.parent.gameObject, 40f);
+            } else if (angley < -40f) {
+                ClampRotationY(vcam.gameObject.transform.parent.gameObject, -40f);
+            }
         }
     }
 
