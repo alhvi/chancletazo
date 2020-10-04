@@ -16,6 +16,7 @@ public class Chancleta : MonoBehaviour {
     private bool updatingStrength = false;
     private bool scheduledForDestruction = false;
     private TrailRenderer trail;
+    private ChancletaSound soundManager;
 
     private void Start() {
         vCamera = GetComponentInParent<CinemachineVirtualCamera>();
@@ -23,6 +24,7 @@ public class Chancleta : MonoBehaviour {
         force = minForce;
         trail = GetComponent<TrailRenderer>();
         trail.enabled = false;
+        soundManager = GetComponent<ChancletaSound>();
     }
 
     private void Update() {
@@ -30,21 +32,32 @@ public class Chancleta : MonoBehaviour {
         if (GameManager.instance.playing) {
             if (Input.GetMouseButtonDown(0) && transform.parent != null) {
                 updatingStrength = true;
+                soundManager.PlayCharging();
+                forceTime = 0;
             }
 
-            if (Input.GetMouseButtonUp(0) && transform.parent != null) {
-                updatingStrength = false;
-                rb.isKinematic = false;
-                transform.position = GameManager.instance.player.shootingPoint.transform.position;
-                transform.parent = null;
-                Vector3 direction = GameManager.instance.player.shootingPoint.transform.forward;
-                rb.AddForce(direction * force);
-                rb.AddTorque(direction * 5f);
-                GameManager.instance.strengthMeter.ClearMeter();
-                GameManager.instance.player.ScheduleInstantiateNewChancleta(0.7f);
-                //Draw trail on release
-                if(toggleTrail)
-                    trail.enabled = true;
+            if (Input.GetMouseButtonUp(0) && transform.parent != null && forceTime > 0) {
+
+                if (transform.parent != null) {
+
+                    rb.isKinematic = false;
+                    transform.position = GameManager.instance.player.shootingPoint.transform.position;
+                    transform.parent = null;
+                    Vector3 direction = GameManager.instance.player.shootingPoint.transform.forward;
+                    rb.AddForce(direction * force);
+                    rb.AddTorque(direction * 5f);
+
+                    GameManager.instance.player.ScheduleInstantiateNewChancleta(0.5f);
+                    //Draw trail on release
+                    if (toggleTrail) {
+                        trail.enabled = true;
+                    }
+
+                    forceTime = 0;
+                    GameManager.instance.strengthMeter.ClearMeter();
+                    soundManager.PlayLaunch();
+                    updatingStrength = false;
+                }
 
             }
 
@@ -68,6 +81,9 @@ public class Chancleta : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision) {
         StartCoroutine("DestroyChancleta");
+        if (!collision.gameObject.CompareTag("Target")) {
+            soundManager.PlayHitDefault();
+        }
     }
 
     private IEnumerator DestroyChancleta() {

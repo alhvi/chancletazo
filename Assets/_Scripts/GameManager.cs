@@ -12,45 +12,59 @@ public class GameManager : MonoBehaviour {
     public AudioClip musicFast;
     public GameObject gamePanel;
     public GameObject endGamePanel;
+    public GameObject creditsPanel;
+    public GameObject instructionsPanel;
     public TMP_Text endGamePoints;
     public float levelTime = 170;
     public int score = 0;
     private AudioSource audioSource;
-    private bool changedMusic = false;
-    public bool playing = true;
+    public bool fastMode = false;
+    public bool playing = false;
+    public int sideToSideItems = 0;
+    public SideToSideSpawner sideToSideSpawner;
 
     private void Awake() {
         instance = this;
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.None;
+        playing = false;
     }
 
     private void Start() {
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = musicNormal;
-        audioSource.Play();
         audioSource.loop = true;
 
-        gamePanel.SetActive(true);
+        instructionsPanel.SetActive(true);
+        gamePanel.SetActive(false);
         endGamePanel.SetActive(false);
+        creditsPanel.SetActive(false);
     }
 
     private void Update() {
-        if (levelTime > 0) {
-            levelTime -= Time.deltaTime;
-            pointsText.text = score.ToString();
-            int levelTimeInt = (int)levelTime;
-            timeText.text = (levelTimeInt / 60).ToString("00") + ":" + (levelTimeInt % 60).ToString("00");
-        } else {
-            playing = false;
-            ShowEndGameUI();
-        }
 
-        if (levelTime <= 39f && !changedMusic) {
-            changedMusic = true;
-            audioSource.Stop();
-            audioSource.clip = musicFast;
-            audioSource.loop = false;
-            audioSource.Play();
+        if (playing) {
+            if (levelTime > 0) {
+                levelTime -= Time.deltaTime;
+                pointsText.text = score.ToString();
+                int levelTimeInt = (int)levelTime;
+                timeText.text = (levelTimeInt / 60).ToString("00") + ":" + (levelTimeInt % 60).ToString("00");
+            } else {
+                playing = false;
+                ShowEndGameUI();
+            }
+
+            if (levelTime <= 39f && !fastMode) {
+                fastMode = true;
+                audioSource.Stop();
+                audioSource.clip = musicFast;
+                audioSource.loop = false;
+                audioSource.Play();
+            }
+
+            if (score >= 30 && !sideToSideSpawner.spawning) {
+                sideToSideItems = 2;
+                sideToSideSpawner.SetSpawning(true);
+            }
         }
 
     }
@@ -62,8 +76,25 @@ public class GameManager : MonoBehaviour {
         Cursor.lockState = CursorLockMode.None;
     }
 
+    public void ShowCreditsPanel() {
+        endGamePanel.SetActive(false);
+        creditsPanel.SetActive(true);
+    }
+
     public void PlayAgain() {
         SceneManager.LoadScene(0);
+    }
+
+    public void StartGame() {
+        Cursor.lockState = CursorLockMode.Locked;
+        audioSource.Play();
+        playing = true;
+        instructionsPanel.SetActive(false);
+        gamePanel.SetActive(true);
+    }
+
+    public void Quit() {
+        Application.Quit();
     }
 
 }
